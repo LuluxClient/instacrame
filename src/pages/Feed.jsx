@@ -6,6 +6,7 @@ import { userAtom } from "../utils/globalState";
 import Navbar from "../components/Navbar";
 import PostList from "../components/PostList";
 import Like from "../components/Like";
+import '../styles/cookie.css'
 
 const Feed = () => {
   const [postName, setPostName] = useState("");
