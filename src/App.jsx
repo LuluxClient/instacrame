@@ -1,19 +1,22 @@
+import React from "react";
 import Footer from "./components/Footers";
 import Inscription from "./pages/Inscription";
+import Feed from "./pages/Feed";
 import "./styles/index.css";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Inscription />} />
-        <Inscription />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Inscription />} />
+          <Route path="/feed" element={<Feed />} />
+        </Routes>
         <Footer />
-      </Routes>
+      </Router>
     </div>
   );
 }
 
 export default App;
-
