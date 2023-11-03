@@ -7,7 +7,6 @@ import Navbar from "../components/Navbar";
 import PostList from "../components/PostList";
 import Like from "../components/Like";
 
-
 const Feed = () => {
   const [postName, setPostName] = useState("");
   const [postId, setPostId] = useState(null);
@@ -44,9 +43,9 @@ const Feed = () => {
   };
 
   return (
-    <div>
-        <Navbar />
-        <h1>Bienvenue sur Instacrame {user.name}</h1>
+    <div className="feed-container">
+      <Navbar />
+      <h1 className="welcome-text">Bienvenue sur Instacrame {user.name}</h1>
       <h2>Poster</h2>
       <input
         value={postName}
@@ -61,11 +60,15 @@ const Feed = () => {
       )}
       <ul>
         {posts.map((post) => (
-          <li key={post.id}>
-            {post.name}
-            <Like />
-            <button onClick={() => handleEdit(post)}>Editer</button>
-            <button onClick={() => handleDelete(post.id)}>Supprimer</button>
+          <li key={post.id} className="post-item">
+            <div className="post-content">
+              <p>{post.name}</p>
+              <Like />
+            </div>
+            <div className="post-buttons">
+              <button onClick={() => handleEdit(post)}>Editer</button>
+              <button onClick={() => handleDelete(post.id)}>Supprimer</button>
+            </div>
           </li>
         ))}
       </ul>

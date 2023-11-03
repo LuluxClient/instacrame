@@ -2,7 +2,7 @@ const PostList = ({ posts }) => {
 
   return (
     <div>
-      <h2 className="special-title">My List</h2>
+      <h2 className="special-title">Posts</h2>
       <ul>
         {posts.map((post, key) => (
           <li key={key}>
