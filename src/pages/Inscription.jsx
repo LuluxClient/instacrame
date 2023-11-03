@@ -1,10 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useAtom } from "jotai";
+import { userAtom } from "../utils/globalState";
 
 const Inscription = () => {
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
   const myInputRef = useRef(null);
+  const [user, setUser] = useAtom(userAtom);
+  
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
 
   const focusInput = () => {
     myInputRef.current.focus();
@@ -20,6 +28,7 @@ const Inscription = () => {
     console.log("Profile Picture:", profilePicture);
   };
 
+
   return (
     <div>
       <h1>Inscription</h1>
@@ -27,11 +36,13 @@ const Inscription = () => {
         <label>
           Pseudo:
           <input
-            ref={myInputRef}
-            type="text"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
+        type="text"
+        label="name"
+        name="name"
+        placeholder="name"
+        onChange={handleChange}
+      />
+          
         </label>
         <br />
         <label>

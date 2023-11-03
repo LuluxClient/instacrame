@@ -9,10 +9,10 @@ const Navbar = () => {
     <nav>
       <Link to={"/"}>Log off</Link>
       {" | "}
-      <Link to={"/search_movie"}>Recherche</Link>
+      <Link to={"/post"}>Poster</Link>
       {" | "}
       <span>
-        Welcome {user.name}
+        Salut {user.name}
       </span>
     </nav>
   );
