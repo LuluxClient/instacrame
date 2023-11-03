@@ -4,6 +4,9 @@ import { addPost, deletePost } from "../redux/actions/postActions";
 import { useAtom } from "jotai";
 import { userAtom } from "../utils/globalState";
 import Navbar from "../components/Navbar";
+import PostList from "../components/PostList";
+import Like from "../components/Like";
+
 
 const Feed = () => {
   const [postName, setPostName] = useState("");
@@ -60,34 +63,15 @@ const Feed = () => {
         {posts.map((post) => (
           <li key={post.id}>
             {post.name}
+            <Like />
             <button onClick={() => handleEdit(post)}>Editer</button>
             <button onClick={() => handleDelete(post.id)}>Supprimer</button>
           </li>
         ))}
       </ul>
+      <PostList posts={posts} />
     </div>
   );
 };
 
 export default Feed;
-
-
-
-
-// import React from "react";
-// import Navbar from "../components/Navbar";
-// import { useAtom } from "jotai";
-// import { userAtom } from "../utils/globalState";
-
-// const Feed = () => {
-//     const [user] = useAtom(userAtom);
-//     return (
-        
-//         <div>
-//             <Navbar />
-//             <h1>Bienvenue sur Instacrame {user.name}</h1>
-//         </div>
-//     );
-// };
-
-// export default Feed;
