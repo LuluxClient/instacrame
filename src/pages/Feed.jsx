@@ -42,13 +42,13 @@ const Feed = () => {
       <input
         value={postName}
         onChange={(e) => setPostName(e.target.value)}
-        plaeholder="Ton post"
+        placeholder="Ton post"
       />
 
       {postId ? (
-        <button onClick={handleUpdate}>Mettre à jour le movie</button>
+        <button onClick={handleUpdate}>Modifier</button>
       ) : (
-        <button onClick={handleAdd}>Ajouter un movie</button>
+        <button onClick={handleAdd}>Faire un post</button>
       )}
       <ul>
         {posts.map((post) => (
