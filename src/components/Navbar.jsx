@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav>
       <Link to={"/"}>Déconnecter</Link>
       {" - "}
-      <Link to={"/post"}>Cookie clicker</Link>
+      <Link to={"/secret"}>Cookie clicker</Link>
     </nav>
   );
 };
