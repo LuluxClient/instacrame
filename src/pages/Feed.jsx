@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addPost, deletePost } from "../redux/actions/postActions";
+import { useAtom } from "jotai";
+import { userAtom } from "../utils/globalState";
+import Navbar from "../components/Navbar";
 
 const Feed = () => {
   const [postName, setPostName] = useState("");
   const [postId, setPostId] = useState(null);
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
+  const [user] = useAtom(userAtom);
 
   const handleAdd = () => {
     if (postName) {
@@ -19,8 +23,8 @@ const Feed = () => {
     }
   };
 
-  const handleDelete = () => {
-    dispatch(deletePost(postId));
+  const handleDelete = (id) => {
+    dispatch(deletePost(id));
   };
 
   const handleEdit = (post) => {
@@ -38,6 +42,8 @@ const Feed = () => {
 
   return (
     <div>
+        <Navbar />
+        <h1>Bienvenue sur Instacrame {user.name}</h1>
       <h2>Poster</h2>
       <input
         value={postName}
