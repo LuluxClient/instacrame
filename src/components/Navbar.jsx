@@ -1,19 +1,19 @@
-import { useAtom } from "jotai";
+// import { useAtom } from "jotai";
 import { Link } from "react-router-dom";
-import { userAtom } from "../utils/globalState";
+// import { userAtom } from "../utils/globalState";
 
 const Navbar = () => {
-  const [user] = useAtom(userAtom);
+//   const [user] = useAtom(userAtom);
 
   return (
     <nav>
-      <Link to={"/"}>Log off</Link>
-      {" | "}
+      <Link to={"/"}>Déconnecter</Link>
+      {" - "}
       <Link to={"/post"}>Poster</Link>
-      {" | "}
-      <span>
+      {" - "}
+      {/* <span>
         Salut {user.name}
-      </span>
+      </span> */}
     </nav>
   );
 };

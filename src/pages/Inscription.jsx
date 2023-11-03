@@ -8,11 +8,10 @@ const Inscription = () => {
   const [profilePicture, setProfilePicture] = useState("");
   const myInputRef = useRef(null);
   const [user, setUser] = useAtom(userAtom);
-  
+
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-
 
   const focusInput = () => {
     myInputRef.current.focus();
@@ -28,7 +27,6 @@ const Inscription = () => {
     console.log("Profile Picture:", profilePicture);
   };
 
-
   return (
     <div>
       <h1>Inscription</h1>
@@ -36,13 +34,13 @@ const Inscription = () => {
         <label>
           Pseudo:
           <input
-        type="text"
-        label="name"
-        name="name"
-        placeholder="name"
-        onChange={handleChange}
-      />
-          
+            ref={myInputRef}
+            type="text"
+            label="name"
+            name="name"
+            placeholder="name"
+            onChange={handleChange}
+          />
         </label>
         <br />
         <label>
