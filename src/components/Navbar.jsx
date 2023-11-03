@@ -1,0 +1,21 @@
+import { useAtom } from "jotai";
+import { Link } from "react-router-dom";
+import { userAtom } from "../utils/globalState";
+
+const Navbar = () => {
+  const [user] = useAtom(userAtom);
+
+  return (
+    <nav>
+      <Link to={"/"}>Log off</Link>
+      {" | "}
+      <Link to={"/search_movie"}>Recherche</Link>
+      {" | "}
+      <span>
+        Welcome {user.name}
+      </span>
+    </nav>
+  );
+};
+
+export default Navbar;
