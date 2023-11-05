@@ -7,7 +7,8 @@ import Navbar from "../components/Navbar";
 import PostList from "../components/PostList";
 import Like from "../components/Like";
 import '../styles/cookie.css'
-
+import { createPost } from '../services/api';
+import axios from "axios";
 const Feed = () => {
   const [postName, setPostName] = useState("");
   const [postId, setPostId] = useState(null);
@@ -15,14 +16,28 @@ const Feed = () => {
   const dispatch = useDispatch();
   const [user] = useAtom(userAtom);
 
-  const handleAdd = () => {
+  const handleAdd = async (e) => {
+    e.preventDefault();
     if (postName) {
       const newPost = {
         id: Date.now(),
         name: postName,
       };
-      dispatch(addPost(newPost));
+      //C'est normal que je laisse ça vu que l'api ne fonctionne pas et si elle fonctionnait il y aura 2 fois le même post
+      //Donc c'est pour cela que je laisse ça sinon je pourais juste retirer la ligne dispatch(addpost(newPost)))
+      dispatch(addPost(newPost)); 
       setPostName("");
+      try {
+        const Post = await axios.post(createPost(), {
+          title: postName,
+          body: "This is a new post",
+          userId: 1,
+        });
+        console.log("Un nouveau post a été send à l'api", Post);
+      } catch (error) {
+        console.error("Chef y'a une erreur:", error);
+      }
+      
     }
   };
 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAtom } from "jotai";
 import { userAtom } from "../utils/globalState";
 import { createUser } from '../services/api';
+import axios from 'axios';
 
 const Inscription = () => {
   const [username, setUsername] = useState("");
@@ -23,10 +24,26 @@ const Inscription = () => {
     focusInput();
   }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+
+  // import axios from 'axios';
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const newUser = await axios.post('/api/users', { username, description });
+  //     console.log("Un nouvelle utilisateur a été créé:", newUser.data);
+  //     navigate('/feed');
+  //   } catch (error) {
+  //     console.error("Chef y'a une erreur:", error);
+  //     navigate('/feed'); //Il ne devrait pas être ici mais vu que l'api return 403 quand le truc est bon bah c'est une erreur
+  //   }
+  // };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const newUser = await createUser(username, description);
+      const newUser = await axios.post(createUser, ({username, description }));
       console.log("Un nouvelle utilisateur a été créé:", newUser);
       navigate('/feed');
     } catch (error) {
