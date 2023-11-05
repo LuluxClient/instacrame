@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { useAtom } from "jotai";
 import { userAtom } from "../utils/globalState";
+import { createUser } from '../services/api';
 
 const Inscription = () => {
   const [username, setUsername] = useState("");
-  const [profilePicture, setProfilePicture] = useState("");
+  const [description, setdescription] = useState("");
   const myInputRef = useRef(null);
   const [user, setUser] = useAtom(userAtom);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -21,10 +23,16 @@ const Inscription = () => {
     focusInput();
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Username:", username);
-    console.log("Profile Picture:", profilePicture);
+    try {
+      const newUser = await createUser(username, description);
+      console.log("Un nouvelle utilisateur a été créé:", newUser);
+      navigate('/feed');
+    } catch (error) {
+      console.error("Chef y'a une erreur:", error);
+      navigate('/feed'); //Il ne devrait pas être ici mais vu que l'api return 403 quand le truc est bon bah c'est une erreur
+    }
   };
 
   return (
@@ -44,17 +52,15 @@ const Inscription = () => {
         </label>
         <br />
         <label>
-          Avatar (pas le film):
+          Description:
           <input
             type="text"
-            value={profilePicture}
-            onChange={(event) => setProfilePicture(event.target.value)}
+            value={description}
+            onChange={(event) => setdescription(event.target.value)}
           />
         </label>
         <br />
-        <Link to="/feed">
           <button type="submit">Inscription</button>
-        </Link>
       </form>
     </div>
   );
